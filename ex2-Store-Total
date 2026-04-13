@@ -1,0 +1,49 @@
+#include<iostream>
+using namespace std;
+class dept
+{
+   string name;
+   int codeno;
+   int items;
+   float price;
+   public:
+   dept()
+   {
+      name=" ";
+      codeno=0;
+      items=-0;
+      price=0;
+   }
+~dept()
+{
+}
+void getdata()
+{
+   cout<<"Enter the name of the product:";
+   cin>>name;
+   cout<<"Enter the Code number:";
+   cin>>codeno;
+   cout<<"Enter the no of items:";
+   cin>>items;
+   cout<<"Enter the price:";
+   cin>>price;
+}
+int getprice()
+{
+   return price;
+}
+int getitems()
+{
+   return items;
+}
+};
+int main()
+{
+   int a,b;
+   dept s1;
+   s1.getdata();
+   a=s1.getprice();
+   b=s1.getitems();
+   cout<<"Total:"<<a*b;
+   return 0;
+}
