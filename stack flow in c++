@@ -1,0 +1,78 @@
+#include<iostream>
+using namespace std;
+const int size = 3;
+class stack
+{
+private:
+    int a[size];
+    int head;
+    int pushCount;
+public:
+    stack()
+    {
+        head = -1;
+        pushCount = 0;
+    }
+    void push(int val)
+    {
+        if (head == size - 1)
+        {
+            throw "stack overflow exception";
+        }
+        a[++head] = val;
+        pushCount++;
+        cout << "Pushed: " << val << endl;
+    }
+    void pop()
+    {
+        if (head == -1 && pushCount == 0)
+        {
+            throw "empty stack exception";
+        }
+        if (head == -1 && pushCount > 0)
+        {
+            throw "stack underflow exception";
+        }
+        cout << "Popped: " << a[head--] << endl;
+    }
+};
+int main()
+{
+    stack s;
+    try {
+        try {
+            s.pop();
+        }
+        catch (const char* res)
+        {
+            cout << "Alert: " << res << endl;
+        }
+        try {
+            s.push(11);
+            s.push(22);
+            s.push(33);
+            s.push(44);
+        }
+        catch (const char* res)
+        {
+            cout << "Alert: " << res << endl;
+        }
+        try {
+            s.pop();
+            s.pop();
+            s.pop();
+            s.pop();
+        }
+        catch (const char* res)
+        {
+            cout << "Alert: " << res << endl;
+            throw;
+        }
+    }
+    catch (...)
+    {
+        cout << "End of program...\tOuter handling rethrown exception" << endl;
+    }
+
+    return 0;
+}
