@@ -1,0 +1,48 @@
+#include<iostream>
+using namespace std;
+class student
+{
+   string name;
+   int age;
+   float height,weight,percent;
+   public:
+   student()
+{
+  name="";
+  age=0;
+  height=0;
+  weight=0;
+  percent=0;
+}
+void getdata()
+{
+   cout<<"Enter the Student Name:";
+   cin>>name;
+   cout<<"Enter your age:";
+   cin>>age;
+   cout<<"Enter your Height:";
+   cin>>height;
+   cout<<"Enter your weight:";
+   cin>>weight;
+   cout<<"Enter your Percentage:";
+   cin>>percent;
+}
+void printdata()
+{
+   cout<<"Name:"<<name<<endl;
+   cout<<"Age:"<<age<<endl;
+   cout<<"Height:"<<height<<endl;
+   cout<<"Weight:"<<weight<<endl;
+   cout<<"Percentage:"<<percent<<endl;
+}
+~student()
+{
+}
+};
+int main()
+{
+   student s1;
+   s1.getdata();
+   s1.printdata();
+   return 0;
+}
