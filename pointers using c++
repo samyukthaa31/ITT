@@ -1,0 +1,101 @@
+#include<iostream>
+using namespace std;
+class a
+{
+   protected:
+      int a;
+   public:
+      virtual void geta()
+      {
+         cout<<"Enter a: ";
+         cin>>a;
+      }
+      virtual void display()
+      {
+         cout<<a;
+      }
+};
+class b:public a
+{
+   protected:
+      int b;
+   public:
+      void geta()
+      {
+         cout<<"\nEnter b: ";
+         cin>>b;
+      }
+      void display()
+      {
+         cout<<b;
+      }
+};
+class c:public b
+{
+   protected:
+      int c;
+   public:
+      void geta()
+      {
+         cout<<"\nEnter c: ";
+         cin>>c;
+      }
+      void display()
+      {
+         cout<<c;
+      }
+};
+class d:public c
+{
+   protected:
+      int d;
+   public:
+      void geta()
+      {
+         cout<<"\nEnter d: ";
+         cin>>d;
+      }
+      void display()
+      {
+         cout<<d;
+      }
+};
+class e:public d
+{
+   protected:
+      int e;
+   public:
+      void geta()
+      {
+         cout<<"\nEnter e: ";
+         cin>>e;
+      }
+      void display()
+      {
+         cout<<e;
+      }
+};
+int main()
+{
+   a*p;
+   a b1;
+   p=&b1;
+   p->geta();
+   p->display();
+   b obj1;
+   p=&obj1;
+   p->geta();
+   p->display();
+   c obj2;
+   p=&obj2;
+   p->geta();
+   p->display();
+   d obj3;
+   p=&obj3;
+   p->geta();
+   p->display();
+   e obj4;
+   p=&obj4;
+   p->geta();
+   p->display();
+}
