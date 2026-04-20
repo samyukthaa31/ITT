@@ -1,0 +1,81 @@
+#include<iostream>
+using namespace std;
+class average
+{
+   private:
+      int a,b,n;
+   public:
+      float avg;
+      void getdata()
+      {
+         cout<<"Enter the total elements:"<<endl;
+         cin>>n;
+         cout<<"Enter the two elements:"<<endl;
+         cin>>a>>b;
+         if(a<0||b<0)
+         {
+            throw"Negative value exception";
+         }
+         if(n==0)
+         {
+            throw 0;
+         }
+         if(avg<=9999)
+         {
+            throw 4.12;
+
+         }
+      }
+      void cal()
+      {
+         avg=(a+b)/n;
+         cout<<"Average: "<<avg<<endl;
+      }
+
+};
+int main()
+{
+
+   average a1;
+   try{
+   try{
+      a1.getdata();
+      a1.cal();
+   }
+   catch(int)
+   {
+      cout<<"Alert:Divide by zero exception"<<endl;
+   }
+   try{
+      a1.getdata();
+      a1.cal();
+   }
+   catch(const char* res)
+   {
+      a1.cal();
+      cout<<"Alert:"<<res<<endl;
+   }
+   try{
+      a1.getdata();
+      a1.cal();
+   }
+   catch(float)
+   {
+      a1.cal();
+      cout<<"Alert:The value of exception"<<endl;
+      throw;
+   }
+   catch(...)
+   {
+      a1.cal();
+      cout<<"Default Exception"<<endl;
+      throw;
+   }
+   }
+   catch(...)
+   {
+      cout<<"End of program...\tRethrown Exception handled "<<endl;
+   }
+
+   return 0;
+}
