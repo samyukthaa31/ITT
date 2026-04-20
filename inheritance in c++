@@ -1,0 +1,93 @@
+#include<iostream>
+using namespace std;
+class dcgen
+{
+   protected:
+      float E;
+      float Ra;
+      float I;
+   public:
+      void print(const string& type, float Ia, float V, float Ish=0.0)
+      {
+         cout<<type<<" DC Generator "<<endl;
+         cout<<"Generator EMF: "<<E<<endl;
+         cout<<"Armature Current: "<<Ia<<endl;
+         if(Ish>0)
+         {
+            cout<<"Shunt Current: "<<Ish<<endl;
+         }
+         cout<<"Terminal Voltage: "<<V<<"\n"<<endl;
+      }
+};
+class seriesgen:public dcgen
+{
+   protected:
+      float Rse;
+   public:
+      seriesgen( float emf, float armres, float current, float seriesres)
+      {
+         E=emf;
+         Ra=armres;
+         I=current;
+         Rse=seriesres;
+      }
+      void cal1()
+      {
+         float Ia=I;
+         float V=E-Ia*(Ra+Rse);
+         print ("Series",Ia,V);
+      }
+};
+class shuntgen:public dcgen
+{
+   protected:
+      float Rsh;
+   public:
+      shuntgen( float emf, float armres, float current, float shuntres)
+      {
+         E=emf;
+         Ra=armres;
+         I=current;
+         Rsh=shuntres;
+      }
+      void cal2()
+      {
+         float Ish=E/Rsh;
+         float Ia=I+Ish;
+         float V=E-Ia*Ra;
+         print("Shunt", Ia, V, Ish);
+      }
+};
+class compoundgen:public dcgen
+{
+   protected:
+      float Rse;
+      float Rsh;
+   public:
+      compoundgen( float emf, float armres, float current,float seriesres, float shuntres)
+      {
+         E=emf;
+         Ra=armres;
+         I=current;
+         Rse=seriesres;
+         Rsh=shuntres;
+      }
+      void cal3()
+      {
+         float Ia=I;
+         float V=E-Ia*(Ra+Rse);
+         float Ish=V/Rsh;
+         Ia=I+Ish;
+         print("Compound", Ia,V,Ish);
+      }
+};
+int main()
+{
+   seriesgen g1(250,0.5,20,0.2);
+   g1.cal1();
+   shuntgen g2(250,0.5,20,100);
+   g2.cal2();
+   compoundgen g3(250,0.5,20,0.2,100);
+   g3.cal3();
+   return 0;
+}
