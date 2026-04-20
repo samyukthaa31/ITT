@@ -1,0 +1,37 @@
+#include <iostream>
+#include <stdexcept>
+
+class Voter {
+private:
+    int age;
+
+public:
+    Voter(int a) {
+        if (a < 0) {
+            throw std::invalid_argument("Invalid age");
+        }
+        if (a < 18) {
+            throw std::runtime_error("Not eligible to vote");
+        }
+        age = a;
+        std::cout << "Voter registered successfully with age: " << age << std::endl;
+    }
+};
+
+int main() {
+    int userAge;
+    std::cout << "Enter age for registration: ";
+    std::cin >> userAge;
+
+    try {
+        Voter v(userAge);
+    }
+    catch (const std::invalid_argument& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
+    catch (const std::runtime_error& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
