@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+class multiply
+{
+    int b;
+public:
+    multiply(int z)
+    {
+        b=z;
+    }
+    friend multiply operator*( multiply& obj, int x);
+    friend multiply operator*(int x, multiply& obj);
+
+    void display()
+    {
+        cout << " " << b << endl;
+    }
+};
+multiply operator*(multiply& obj, int x)
+{
+    return multiply(obj.b * x);
+}
+multiply operator*(int z, multiply& obj)
+{
+    return multiply(z * obj.b);
+}
+int main()
+{
+    multiply m1(8);
+    multiply ans1 = m1 * 4;
+    cout << "Result of m1 * 4: ";
+    ans1.display();
+    multiply ans2 = 7 * m1;
+    cout << "Result of 7* m1: ";
+    ans2.display();
+    return 0;
+}
